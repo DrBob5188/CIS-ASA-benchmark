@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="72" errors="0" failures="9" not-run="0" inconclusive="0" ignored="4" skipped="0" invalid="0" date="2022-12-15" time="14:08:45">
+  <environment user="ritz" machine-name="BNE14467" cwd="C:\scripts\audit\ASAConfigAudit" user-domain="AAR" platform="Microsoft Windows 10 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition3" nunit-version="2.5.8.0" os-version="10.0.19044" clr-version="4.0.30319.42000" />
+  <culture-info current-culture="en-AU" current-uiculture="en-GB" />
+  <test-suite type="Powershell" name="Pester" executed="True" result="Failure" success="False" time="3.3724" asserts="0">
+    <results>
+      <test-suite type="PowerShell" name="0 Configuration PreRequisites" executed="True" result="Failure" success="False" time="0.1352" asserts="0">
+        <results>
+          <test-case name="Ensure configuration prerequisite 'Untrusted' interfaces are defined" time="0.1175" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="Ensure configuration prerequisite 'Untrusted' interfaces are not an empty array" time="0.0178" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: {True}
+But was:  {False}</message>
+              <stack-trace>at line: 98 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+98:             ($Untrusted -is [array]) -and ($Untrusted.Count -gt 0)  | should be $true
+</stack-trace>
+            </failure>
+          </test-case>
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.1 Management Plane - Password Management" executed="True" result="Failure" success="False" time="0.2373" asserts="0">
+        <results>
+          <test-case name="1.1.1 Ensure 'Logon Password' is set" time="0.0946" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.1.2 Ensure 'Enable Password' is set" time="0.0338" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.1.3 Ensure 'Master Key Passphrase' is set" time="0.0341" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 115 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+115:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+          <test-case name="1.1.4 Ensure 'Password Recovery' is disabled" time="0.0433" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 119 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+119:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+          <test-case name="1.1.5 Ensure 'Password Policy' is enabled" time="0.0316" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 123 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+123:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.2 Management Plane - Device Management" executed="True" result="Success" success="True" time="0.21" asserts="0">
+        <results>
+          <test-case name="1.2.1 Ensure 'Domain Name' is set" time="0.0821" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.2.2 Ensure 'Host Name' is set" time="0.0254" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.2.3 Ensure 'Failover' is enabled" time="0.0398" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.2.4 Ensure 'Unused Interfaces' are disabled" time="0.0627" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.4.1 Management Plane - Authentication, Authorisation and Accounting - Local AAA Rules" executed="True" result="Failure" success="False" time="0.1602" asserts="0">
+        <results>
+          <test-case name="1.4.1.1 Ensure 'aaa local authentication max failed attempts' is set to less than or equal to '3'" time="0.0847" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 154 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+154:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+          <test-case name="1.4.1.2 Ensure 'local username and password' is set" time="0.042" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.1.3 Ensure known default accounts do not exist" time="0.0334" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.4.2 Management Plane - Authentication, Authorisation and Accounting - Remote AAA servers" executed="True" result="Success" success="True" time="0.0765" asserts="0">
+        <results>
+          <test-case name="1.4.2.1 Ensure 'TACACS+/RADIUS' is configured correctly" time="0.0765" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.4.3 Management Plane - Authentication, Authorisation and Accounting - AAA authentication" executed="True" result="Success" success="True" time="0.2107" asserts="0">
+        <results>
+          <test-case name="1.4.3.1 Ensure 'aaa authentication enable console' is configured correctly" time="0.0782" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.3.2 Ensure 'aaa authentication http console' is configured correctly" time="0.0335" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.3.3 Ensure 'aaa authentication secure-http-client' is configured correctly" time="0.032" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.3.4 Ensure 'aaa authentication serial console' is configured correctly" time="0.0336" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.3.5 Ensure 'aaa authentication ssh console' is configured correctly" time="0.0334" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.4.4 Management Plane - Authentication, Authorisation and Accounting - AAA Authorization" executed="True" result="Success" success="True" time="0.2643" asserts="0">
+        <results>
+          <test-case name="1.4.4.1 Ensure 'aaa command authorization' is configured correctly" time="0.0801" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.4.2 Ensure 'aaa authorization exec' is configured correctly" time="0.028" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.5.1 Ensure 'aaa accounting command' is configured correctly" time="0.0561" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.5.2 Ensure 'aaa accounting for SSH' is configured correctly" time="0.0336" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.5.3 Ensure 'aaa accounting for Serial console' is configured correctly" time="0.0339" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.4.5.4 Ensure 'aaa accounting for EXEC mode' is configured correctly" time="0.0326" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.5 Management Plane - Banner Rules" executed="True" result="Failure" success="False" time="0.1796" asserts="0">
+        <results>
+          <test-case name="1.5.1 Ensure 'ASDM banner' is set" time="0.0799" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.5.2 Ensure 'EXEC banner' is set" time="0.0293" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.5.3 Ensure 'LOGIN banner' is set" time="0.0386" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.5.4 Ensure 'MOTD banner' is set" time="0.0318" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 248 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+248:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.6 Management Plane - SSH Rules" executed="True" result="Success" success="True" time="0.2112" asserts="0">
+        <results>
+          <test-case name="1.6.1 Ensure 'SSH source restriction' is set to an authorized IP address" time="0.0812" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.6.2 Ensure 'SSH version 2' is enabled" time="0.0357" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.6.3 Ensure 'RSA key pair' is greater than or equal to 2048 bits" time="0.0316" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.6.4 Ensure 'SCP protocol' is set to Enable for files transfers" time="0.031" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.6.5 Ensure 'Telnet' is disabled" time="0.0318" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.7 Management Plane Http Rules" executed="True" result="Failure" success="False" time="0.1634" asserts="0">
+        <results>
+          <test-case name="1.7.1 Ensure 'HTTP source restriction' is set to an authorized IP address" time="0.0874" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.7.2 Ensure 'TLS 1.2' is set for HTTPS access" time="0.0355" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.7.3 Ensure 'SSL AES 256 encryption' is set for HTTPS access" time="0.004" asserts="0" success="True" result="Ignored" executed="False" />
+          <test-case name="1.7.3a Ensure 'SSL tlsv1.2 custom' ciphersuites is set for HTTPS access" time="0.0366" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 310 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+310:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.8 Management Plane - Session timeout Rules" executed="True" result="Failure" success="False" time="0.1516" asserts="0">
+        <results>
+          <test-case name="1.8.1 Ensure 'console session timeout' is less than or equal to '20' minutes" time="0.0844" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.8.2 Ensure 'SSH session timeout' is less than or equal to '60' minutes" time="0.0339" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.8.3 Ensure 'HTTP idle timeout' is less than or equal to '20' minutes" time="0.0332" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: {True}
+But was:  {False}</message>
+              <stack-trace>at line: 339 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+339:             ($Timeout -gt 0 -and $Timeout -le $MaxHttpTimeout) | Should be $true
+</stack-trace>
+            </failure>
+          </test-case>
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.9 Management Plane - Clock Rules" executed="True" result="Ignored" success="True" time="0.1423" asserts="0">
+        <results>
+          <test-case name="1.9.1.1 Ensure 'NTP authentication' is enabled" time="0.0656" asserts="0" success="True" result="Ignored" executed="False" />
+          <test-case name="1.9.1.2 Ensure 'NTP authentication key' is configured correctly" time="0.0062" asserts="0" success="True" result="Ignored" executed="False" />
+          <test-case name="1.9.1.3 Ensure 'trusted NTP server' exists" time="0.0029" asserts="0" success="True" result="Ignored" executed="False" />
+          <test-case name="1.9.1.3a Ensure 'NTP server' is configured" time="0.0367" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.9.2 Ensure 'local timezone' is properly configured" time="0.0308" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="Management Plane - Logging Rules" executed="True" result="Success" success="True" time="0.401" asserts="0">
+        <results>
+          <test-case name="1.10.1 Ensure 'logging' is enabled" time="0.0814" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.2 Ensure 'logging to Serial console' is disabled" time="0.0374" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.3 Ensure 'logging to monitor' is disabled" time="0.0334" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.4 Ensure 'syslog hosts' is configured correctly" time="0.0285" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.5 Ensure 'logging with the device ID' is configured correctly" time="0.0344" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.6 Ensure 'logging history severity level' is set to greater than or equal to '5'" time="0.0318" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.7 Ensure 'logging with timestamps' is enabled" time="0.0291" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.8 Ensure 'logging buffer size' is greater than or equal to '524288' bytes (512kb)" time="0.0343" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.9 Ensure 'logging buffered severity level' is greater than or equal to '3'" time="0.0301" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.10 Ensure 'logging trap severity level' is greater than or equal to '5'" time="0.032" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.10.11 Ensure email logging is configured for critical to emergency" time="0.0286" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="1.11 Management Plane - SNMP Rules" executed="True" result="Failure" success="False" time="0.2447" asserts="0">
+        <results>
+          <test-case name="1.11.1 Ensure 'snmp-server group' is set to 'v3 priv'" time="0.0796" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.11.2 Ensure 'snmp-server user' is set to 'v3 auth SHA' (aes256 encryption)" time="0.0323" asserts="0" success="False" result="Failure" executed="True">
+            <failure>
+              <message>Expected: value was {}, but should not have been the same</message>
+              <stack-trace>at line: 433 in C:\scripts\audit\ASAConfigAudit\Get-AsaAudit.Tests.ps1
+433:             $Matchinfo | Should not be $null
+</stack-trace>
+            </failure>
+          </test-case>
+          <test-case name="1.11.2a Ensure 'snmp-server user' is set to 'v3 auth SHA' (aes128 encryption)" time="0.0373" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.11.3 Ensure 'snmp-server host' is set to 'version 3'" time="0.0299" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.11.4 Ensure 'SNMP traps' is enabled" time="0.0345" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="1.11.5 Ensure 'SNMP community string' is not the default string" time="0.0311" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="2.1 Control Plane - Routing Protocol Authentication" executed="True" result="Success" success="True" time="0.2118" asserts="0">
+        <results>
+          <test-case name="2.1.1 Ensure 'RIP authentication' is enabled" time="0.0815" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.1.2 Ensure 'OSPF authentication' is enabled" time="0.0549" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.1.3 Ensure 'EIGRP authentication' is enabled" time="0.0311" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.1.4 Ensure 'BGP authentication' is enabled" time="0.0445" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="2.2 Control Plane - General" executed="True" result="Success" success="True" time="0.2062" asserts="0">
+        <results>
+          <test-case name="2.2 Ensure 'noproxyarp' is enabled for untrusted interfaces" time="0.0763" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.3 Ensure 'DNS Guard' is enabled" time="0.0326" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.4 Ensure DHCP services are disabled for untrusted interfaces" time="0.0321" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.4a Ensure DHCP relay services are disabled for untrusted interfaces" time="0.0328" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="2.5 Ensure ICMP is restricted for untrusted interfaces" time="0.0324" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+      <test-suite type="PowerShell" name="Data Plane - General" executed="True" result="Success" success="True" time="0.1665" asserts="0">
+        <results>
+          <test-case name="3.1 Ensure DNS services are configured correctly" time="0.0911" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="3.2 Ensure intrusion prevention is enabled for untrusted interfaces" time="0.0306" asserts="0" success="True" result="Success" executed="True" />
+          <test-case name="3.3 Ensure packet fragments are restricted for untrusted interfaces" time="0.0448" asserts="0" success="True" result="Success" executed="True" />
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
